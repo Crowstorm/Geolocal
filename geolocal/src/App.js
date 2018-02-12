@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import configureStore from './store/configureStore'
+//import configureStore from './store/configureStore'
 import './App.css';
 
 //containers
@@ -9,13 +9,13 @@ import FormContainer from './containers/formContainer'
 
 
 
-const store = configureStore();
+//const store = configureStore();
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App" store={store}>
+      <div className="App">
         <HeaderContainer />
         <FormContainer />
         <FooterContainer />

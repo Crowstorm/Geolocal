@@ -11,7 +11,9 @@ class Form extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault()
         let address = this.refs.address.value;
-        console.log(address)
+        //console.log(address)
+        //this.props.getFormAddress(address);
+        this.props.getDataFromGeocode(address);
     }
 
     
@@ -26,6 +28,13 @@ class Form extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="row">
+                    <div className="col-lg-12">
+                        <button type="submit" className="btn btn-primary center">Adres</button><br /><br />
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="col-sm-6">
                         <div className="form-group">
@@ -82,11 +91,11 @@ class Form extends React.Component {
                     </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-lg-12">
                         <button type="submit" className="btn btn-primary center">Pobierz</button><br /><br />
                     </div>
-                </div>
+                </div> */}
             </form>
         )
     }
@@ -97,6 +106,7 @@ class Form extends React.Component {
         )
     }
     render() {
+        console.log('propsy', this.props)
         let renderForm = this.getForm();
         let renderMap = this.getMap();
 

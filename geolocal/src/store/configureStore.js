@@ -1,15 +1,16 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import ReduxPromise from 'redux-promise'
+import thunk from 'redux-thunk'
+
 import reducers from './reducers'
 
-//import renderedDrugsReducer2 from '../reducers/levels';
 
-import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
     let store = createStore(reducers,
         composeEnhancers(
-            applyMiddleware(thunk)
+            applyMiddleware(thunk, ReduxPromise)
         )
     )
     return store;
