@@ -108,12 +108,12 @@ class Form extends React.Component {
     render() {
         console.log('propsy', this.props)
         let renderForm = this.getForm();
-        let renderMap = this.getMap();
+        //let renderMap = this.getMap();
 
         return (
             <div>
                 {renderForm}
-                {renderMap}
+                
             </div>
         )
     }

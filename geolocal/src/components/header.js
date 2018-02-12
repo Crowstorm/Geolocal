@@ -9,7 +9,7 @@ class Header extends React.Component {
                         <p>Geolokalizacja BMS</p>
                     </div>
                     <div className="row">
-                        <img src="http://www.iconarchive.com/download/i45759/tatice/operating-systems/Globe.ico" style={{ height: 100 + 'px' }} />
+                        {/* <img src="http://www.iconarchive.com/download/i45759/tatice/operating-systems/Globe.ico" style={{ height: 100 + 'px' }} /> */}
                     </div>
                 </div>
             </div>

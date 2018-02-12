@@ -6,6 +6,7 @@ import './App.css';
 import HeaderContainer from './containers/headerContainer'
 import FooterContainer from './containers/footerContainer'
 import FormContainer from './containers/formContainer'
+import MapContainer from './containers/mapContainer'
 
 
 
@@ -18,6 +19,7 @@ class App extends Component {
       <div className="App">
         <HeaderContainer />
         <FormContainer />
+        <MapContainer />
         <FooterContainer />
       </div>
     );
