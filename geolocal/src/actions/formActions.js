@@ -6,8 +6,22 @@ const namespace = 'GEO';
 //const names
 export const GET_FORM_ADDRESS = `GET_FORM_ADDRESS${namespace}`;
 export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE${namespace}`;
+export const UPDATE_LAT_LON = `UPDATE_LAT_LON${namespace}`;
 
 //functions
+export function updateLatLon(lat, lon){
+    let _lat = lat;
+    let _lon = lon;
+
+    return function(dispatch){
+        dispatch({
+            type: UPDATE_LAT_LON,
+            lat: _lat,
+            lon: _lon
+        })
+    }
+}
+
 export function getFormAddress(address) {
     let _address = address;
 

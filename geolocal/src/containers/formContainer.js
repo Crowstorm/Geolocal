@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 
 import Form from '../components/form';
-import {getFormAddress, getDatafromGeocode} from '../actions/formActions';
+import {getFormAddress, getDatafromGeocode, updateLatLon} from '../actions/formActions';
 
 
 class FormContainer extends React.Component{
@@ -16,7 +16,17 @@ class FormContainer extends React.Component{
 
 const mapStateToProps = (store) =>{
     return{
-        address: store.form.addressInput
+        address: store.form.addressInput,
+        street: store.form.street,
+        streetNr: store.form.streetNr,
+        postalCode: store.form.postalCode,
+        city: store.form.city,
+        voivodeship: store.form.voivodeship,
+        county: store.form.county,
+        borough: store.form.borough,
+        country: store.form.country,
+        lat: store.form.lat,
+        lon: store.form.lon
     }
 }
 
@@ -30,7 +40,7 @@ const mapDispatchToProps = (dispatch) =>{
         },
         getDataFromGeocode: (address) => {
             dispatch(getDatafromGeocode(address))
-        }
+        },
     }
 }
 

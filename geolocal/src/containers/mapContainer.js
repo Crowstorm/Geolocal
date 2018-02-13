@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import  {updateLatLon} from '../actions/formActions';
+
+
 
 import Map from '../components/map'
 
@@ -21,4 +24,12 @@ const mapStateToProps = (store) =>{
     }
 }
 
-export default connect(mapStateToProps)(MapContainer);
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        updateLatLon: (lat, lon) =>{
+            dispatch(updateLatLon(lat, lon))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
