@@ -17,8 +17,7 @@ class Map extends React.Component {
     }
 
     //map start
-    componentDidMount() {
-
+    componentWillReceiveProps(nextProps) {
         //https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 
         GoogleMapsLoader.load((google) => {
@@ -32,36 +31,12 @@ class Map extends React.Component {
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
 
-                //przekonwertuj z adresu usera
-
-
-                // console.log("Pobrany adres: ", street, ' ', city)
                 navigator.geolocation.getCurrentPosition((position) => {
 
-                    function lat() {
-                        if (localStorage.getItem('AxiosLat')) {
-                            return Number(localStorage.getItem('AxiosLat'))
-                        } else {
-                            return position.coords.latitude;
-                        }
-                    }
-
-                    function lon() {
-                        if (localStorage.getItem('AxiosLon')) {
-                            return Number(localStorage.getItem('AxiosLon'))
-                        } else {
-                            return position.coords.longitude;
-                        }
-                    }
-
-                    let _lat = lat();
-                    let _lon = lon();
+                    let _lat = Number(nextProps.lat);
+                    let _lon = Number(nextProps.lon);
                     console.log(_lat, _lon);
 
-                    // var pos = {
-                    //     lat: position.coords.latitude,
-                    //     lng: position.coords.longitude
-                    // };
                     var pos = {
                         lat: _lat,
                         lng: _lon
@@ -79,9 +54,6 @@ class Map extends React.Component {
 
                     map.setCenter(pos);
 
-                    //tez local storage
-                    //let login = this.checkLogin();
-                    //this.props.changeCoords(_lat.toFixed(7), _lon.toFixed(7), login);
                     localStorage.setItem('tempLat', _lat);
                     localStorage.setItem('tempLon', _lon);
 
@@ -117,6 +89,7 @@ class Map extends React.Component {
     //map end
 
     render() {
+        console.log('propsy mapy', this.props);
         return (
             <div>
                 <div className='d-flex justify-content-center' id='map' />

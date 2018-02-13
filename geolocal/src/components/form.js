@@ -1,6 +1,8 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
+import ButtonsContainer from '../containers/buttonsContainer';
+
 class Form extends React.Component {
     constructor(props) {
         super(props)
@@ -24,7 +26,7 @@ class Form extends React.Component {
                     <div className="col-sm-12">
                         <div className="form-group">
                             <label>Adres</label>
-                            <input type="text" className="form-control" required ref="address" placeholder="Example input" />
+                            <input type="text" className="form-control" required ref="address" placeholder="Example input" defaultValue='Piotrkowska 1, Łódź'/>
                         </div>
                     </div>
                 </div>
@@ -34,6 +36,8 @@ class Form extends React.Component {
                         <button type="submit" className="btn btn-primary center">Adres</button><br /><br />
                     </div>
                 </div>
+
+                <ButtonsContainer />
 
                 <div className="row">
                     <div className="col-sm-6">
