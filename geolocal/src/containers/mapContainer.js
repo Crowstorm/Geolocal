@@ -20,7 +20,8 @@ const mapStateToProps = (store) =>{
     return{
         address: store.form.addressInput,
         lat: store.form.lat,
-        lon: store.form.lon
+        lon: store.form.lon,
+        addressError: store.form.addressError
     }
 }
 

@@ -4,9 +4,9 @@ import axios from 'axios';
 const namespace = 'GEO';
 
 //const names
-export const GET_FORM_ADDRESS = `GET_FORM_ADDRESS${namespace}`;
-export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE${namespace}`;
-export const UPDATE_LAT_LON = `UPDATE_LAT_LON${namespace}`;
+export const GET_FORM_ADDRESS = `GET_FORM_ADDRESS_${namespace}`;
+export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE_${namespace}`;
+export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
 
 //functions
 export function updateLatLon(lat, lon){

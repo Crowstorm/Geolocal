@@ -33,8 +33,8 @@ class Map extends React.Component {
 
                 navigator.geolocation.getCurrentPosition((position) => {
 
-                    let _lat = Number(nextProps.lat);
-                    let _lon = Number(nextProps.lon);
+                    let _lat = (Number(nextProps.lat)) ? Number(nextProps.lat) : 1;
+                    let _lon = (Number(nextProps.lon)) ? Number(nextProps.lon) : 1;
                     console.log(_lat, _lon);
 
                     var pos = {
@@ -54,21 +54,12 @@ class Map extends React.Component {
 
                     map.setCenter(pos);
 
-                    localStorage.setItem('tempLat', _lat);
-                    localStorage.setItem('tempLon', _lon);
-
                     //marker listeners
                     window.google.maps.event.addListener(marker, 'dragstart', function () {
                     });
 
                     window.google.maps.event.addListener(marker, 'dragend', (e) => {
-                        // document.getElementById('test').innerHTML = '<p>Want to export: Current Lat: ' + e.latLng.lat().toFixed(7) + ' Current Lng: ' + e.latLng.lng().toFixed(7) + '</p>';
-                        // let login = this.checkLogin();
-
-                        //lepiej w localstorage chyba albo nastepny reducer
-                        localStorage.setItem('tempLat', e.latLng.lat().toFixed(7));
-                        localStorage.setItem('tempLon', e.latLng.lng().toFixed(7));
-                        //this.props.changeCoords(e.latLng.lat().toFixed(7), e.latLng.lng().toFixed(7), login);
+                        this.props.updateLatLon(e.latLng.lat().toFixed(7), e.latLng.lng().toFixed(7))
                     });
 
 
@@ -87,12 +78,23 @@ class Map extends React.Component {
     handleLocationError(browserHasGeolocation, pos, map) { }
 
     //map end
+    getMap = () =>{
+        if(!this.props.addressError){
+            return(
+                <div className='d-flex justify-content-center' id='map' />  
+            )
+        } else {
+            return(<div>Błędny adres </div>)
+        }
+
+    }
 
     render() {
         console.log('propsy mapy', this.props);
+        let renderMap = this.getMap();
         return (
             <div>
-                <div className='d-flex justify-content-center' id='map' />
+                {renderMap}
             </div>
         )
     }

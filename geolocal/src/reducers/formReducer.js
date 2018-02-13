@@ -17,7 +17,8 @@ let initial_state = {
     borough: null,
     country: null,
     lat: null,
-    lon: null
+    lon: null,
+    addressError: false
 };
 
 export default (state = initial_state, action) => {
@@ -37,7 +38,7 @@ export default (state = initial_state, action) => {
         }
 
         case GET_DATA_FROM_GEOCODE: {
-            if(action.payload.data.results[0].address_components[5]){
+            try{
                 return Object.assign({}, state, {
                     street: action.payload.data.results[0].address_components[1].long_name,
                     streetNr: action.payload.data.results[0].address_components[0].long_name,
@@ -47,17 +48,14 @@ export default (state = initial_state, action) => {
                     country: action.payload.data.results[0].address_components[6].long_name,
                     lat: action.payload.data.results[0].geometry.location.lat,
                     lon: action.payload.data.results[0].geometry.location.lng,
+                    addressError: false
                 })
-            } else {
-                console.log('xD')
+            } catch(err) {
+                console.log(err);
+                return Object.assign({}, state, {
+                    addressError: true
+                })
             }
-            // console.log(action.payload.data.results[0]);
-            // console.log('nr ulicy',action.payload.data.results[0].address_components[0].long_name );
-            // console.log('Ulica',action.payload.data.results[0].address_components[1].long_name );
-            // console.log('Powiat',action.payload.data.results[0].address_components[3].long_name );
-            // console.log('Gmina',action.payload.data.results[0].address_components[4].long_name );
-            // console.log('Woje',action.payload.data.results[0].address_components[5].long_name );
-
         }
 
         default: {
