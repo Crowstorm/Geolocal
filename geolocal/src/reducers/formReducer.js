@@ -53,6 +53,14 @@ export default (state = initial_state, action) => {
             } catch(err) {
                 console.log(err);
                 return Object.assign({}, state, {
+                    street: null,
+                    streetNr: null,
+                    city: null,
+                    voivodeship: null,
+                    county: null,
+                    country: null,
+                    lat: null,
+                    lon: null,
                     addressError: true
                 })
             }

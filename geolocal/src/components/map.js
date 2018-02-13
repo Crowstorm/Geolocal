@@ -33,8 +33,10 @@ class Map extends React.Component {
 
                 navigator.geolocation.getCurrentPosition((position) => {
 
-                    let _lat = (Number(nextProps.lat)) ? Number(nextProps.lat) : 1;
-                    let _lon = (Number(nextProps.lon)) ? Number(nextProps.lon) : 1;
+                    
+                    
+                    let _lat = Number(nextProps.lat);
+                    let _lon = Number(nextProps.lon);
                     console.log(_lat, _lon);
 
                     var pos = {
@@ -79,21 +81,28 @@ class Map extends React.Component {
 
     //map end
     getMap = () =>{
-        if(!this.props.addressError){
             return(
                 <div className='d-flex justify-content-center' id='map' />  
             )
-        } else {
-            return(<div>Błędny adres </div>)
-        }
+    }
 
+    getError = () =>{
+        if(this.props.addressError){
+            return(
+                <div> Nieprawidłowy adres </div>
+            )
+        } else {
+            return null;
+        }
     }
 
     render() {
         console.log('propsy mapy', this.props);
         let renderMap = this.getMap();
+        let renderError = this.getError();
         return (
             <div>
+                {renderError}
                 {renderMap}
             </div>
         )
