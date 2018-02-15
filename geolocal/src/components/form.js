@@ -22,7 +22,7 @@ class Form extends React.Component {
 
 
 
-    handleFormSubmit = (e) => {
+    handleFirstFormSubmit = (e) => {
         e.preventDefault()
         let address = this.refs.address.value;
         //console.log(address)
@@ -30,11 +30,16 @@ class Form extends React.Component {
         this.props.getDataFromGeocode(address);
     }
 
+    handleSecondFormSubmit = (e) => {
+        e.preventDefault()
+        alert('lat' + this.props.lat + 'lon' + this.props.lon)
+    }
+
 
     getForm = () => {
         return (
             <div>
-                <form onSubmit={this.handleFormSubmit}>
+                <form onSubmit={this.handleFirstFormSubmit}>
                     <div className="row">
                         <div className="col-sm-12">
                             <div className="form-group">
@@ -51,7 +56,7 @@ class Form extends React.Component {
                     </div>
                 </form>
 
-                <form>
+                <form onSubmit={this.handleSecondFormSubmit}>
                     {/* <ButtonsContainer /> */}
                     <div className="row">
                         <div className="col-lg-12">
@@ -127,6 +132,12 @@ class Form extends React.Component {
                                 <label>Longitude</label>
                                 <input type="text" className="form-control"  value={(this.props.lon) ? this.props.lon : '...'} />
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <button type="submit" className="btn btn-primary center">Wyślij</button><br /><br />
                         </div>
                     </div>
 
