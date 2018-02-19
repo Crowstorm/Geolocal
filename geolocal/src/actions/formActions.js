@@ -17,9 +17,9 @@ export const GET_TEST = `GET_TEST_${namespace}`;
 export function testUpdate(ulica, lat, lon) {
     return function (dispatch) {
         let params = { ulica, lat, lon };
-        console.log(params);
+        //console.log(params);
 
-        Api.post('/ulica/coordy', params).then((res) => {
+        Api.post('/api/ulica/coordy', params).then((res) => {
             if (res.success) {
                 dispatch({
                     type: GET_TEST,
@@ -29,6 +29,7 @@ export function testUpdate(ulica, lat, lon) {
                 })
             } else {
                 alert('Cos poszlo nie tak');
+                console.log('respons', res)
             }
         })
     }
