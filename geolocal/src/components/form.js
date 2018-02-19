@@ -28,7 +28,10 @@ class Form extends React.Component {
         //console.log(address)
         //this.props.getFormAddress(address);
         this.props.getDataFromGeocode(address);
-        this.props.test();
+        let ulica = "Piotrkowska 1";
+        let lon = 150.2222;
+        let lat = 123.23
+        this.props.testUpdate(ulica, lat, lon);
     }
 
     handleSecondFormSubmit = (e) => {

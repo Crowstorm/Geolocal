@@ -10,24 +10,35 @@ const namespace = 'GEO';
 export const GET_FORM_ADDRESS = `GET_FORM_ADDRESS_${namespace}`;
 export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE_${namespace}`;
 export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
+export const GET_TEST = `GET_TEST_${namespace}`;
 
 //functions
 
-export function test(){
-    Api.get('/ulica').then((res) => {
-        if (res.success) {
-           console.log('elo', res)
-        } else {
-            alert('Cos poszlo nie tak');
-        }
-    })
+export function testUpdate(ulica, lat, lon) {
+    return function (dispatch) {
+        let params = { ulica, lat, lon };
+        console.log(params);
+
+        Api.post('/ulica/coordy', params).then((res) => {
+            if (res.success) {
+                dispatch({
+                    type: GET_TEST,
+                    testUlica: ulica,
+                    testLat: lat,
+                    testLon: lon
+                })
+            } else {
+                alert('Cos poszlo nie tak');
+            }
+        })
+    }
 }
 
-export function updateLatLon(lat, lon){
+export function updateLatLon(lat, lon) {
     let _lat = lat;
     let _lon = lon;
 
-    return function(dispatch){
+    return function (dispatch) {
         dispatch({
             type: UPDATE_LAT_LON,
             lat: _lat,

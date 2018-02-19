@@ -3,7 +3,8 @@
 import {
     GET_FORM_ADDRESS,
     GET_DATA_FROM_GEOCODE,
-    UPDATE_LAT_LON
+    UPDATE_LAT_LON,
+    GET_TEST
 } from '../actions/formActions'
 
 let initial_state = {
@@ -18,12 +19,22 @@ let initial_state = {
     country: null,
     lat: null,
     lon: null,
-    addressError: false
+    addressError: false,
+    testUlica: null,
+    testLat: null,
+    testLon: null
 };
 
 export default (state = initial_state, action) => {
 
     switch (action.type) {
+        case GET_TEST:{
+            return Object.assign({}, state, {
+                testUlica: action.testUlica,
+                testLat: action.testLat,
+                testLon: action.testLon
+            })
+        }
         case UPDATE_LAT_LON: {
             return Object.assign({}, state, {
                 lat: action.lat,
