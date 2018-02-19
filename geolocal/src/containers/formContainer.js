@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 
 import Form from '../components/form';
-import {getFormAddress, getDatafromGeocode, updateLatLon} from '../actions/formActions';
+import {getFormAddress, getDatafromGeocode, updateLatLon, test} from '../actions/formActions';
 
 
 class FormContainer extends React.Component{
@@ -41,6 +41,9 @@ const mapDispatchToProps = (dispatch) =>{
         getDataFromGeocode: (address) => {
             dispatch(getDatafromGeocode(address))
         },
+        test: () =>{
+            dispatch(test())
+        }
     }
 }
 

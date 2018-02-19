@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+import Api from '../services/api';
+
+
 //namespace
 const namespace = 'GEO';
 
@@ -9,6 +12,17 @@ export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE_${namespace}`;
 export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
 
 //functions
+
+export function test(){
+    Api.get('/ulica').then((res) => {
+        if (res.success) {
+           console.log('elo', res)
+        } else {
+            alert('Cos poszlo nie tak');
+        }
+    })
+}
+
 export function updateLatLon(lat, lon){
     let _lat = lat;
     let _lon = lon;

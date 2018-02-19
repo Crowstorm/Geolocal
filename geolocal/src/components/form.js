@@ -28,6 +28,7 @@ class Form extends React.Component {
         //console.log(address)
         //this.props.getFormAddress(address);
         this.props.getDataFromGeocode(address);
+        this.props.test();
     }
 
     handleSecondFormSubmit = (e) => {
@@ -151,11 +152,6 @@ class Form extends React.Component {
         )
     }
 
-    getMap = () => {
-        return (
-            <img src="https://www.goatsontheroad.com/wp-content/uploads/2012/03/old-world-map-1.jpg" />
-        )
-    }
     render() {
         console.log('propsy', this.props)
         let renderForm = this.getForm();
