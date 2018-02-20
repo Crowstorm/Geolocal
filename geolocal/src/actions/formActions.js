@@ -21,6 +21,7 @@ export function testUpdate(ulica, lat, lon) {
 
         Api.post('/api/ulica/coordy', params).then((res) => {
             if (res.success) {
+                //console.log('resp', res)
                 dispatch({
                     type: GET_TEST,
                     testUlica: ulica,
@@ -31,6 +32,20 @@ export function testUpdate(ulica, lat, lon) {
                 alert('Cos poszlo nie tak');
                 console.log('respons', res)
             }
+        })
+
+       // let _ulica = ulica;
+
+        // Api.post('/api/ulica/all', _ulica).then((res) =>{
+        //     console.log('res', res);
+        // })
+    }
+}
+
+export function test(){
+    return function(dispatch){
+        Api.get ('/api/ulica/all').then((res)=>{
+            console.log('resp', res);
         })
     }
 }
