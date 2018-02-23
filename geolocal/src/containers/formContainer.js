@@ -26,7 +26,10 @@ const mapStateToProps = (store) =>{
         borough: store.form.borough,
         country: store.form.country,
         lat: store.form.lat,
-        lon: store.form.lon
+        lon: store.form.lon,
+        arrSucc: store.form.arrSucc,
+        arrFail: store.form.arrFail,
+        arrCheck: store.form.arrCheck
     }
 }
 
@@ -44,9 +47,6 @@ const mapDispatchToProps = (dispatch) =>{
         testUpdate: (ulica, lat, lon) =>{
             dispatch(testUpdate(ulica, lat, lon))
         },
-        test: () =>{
-            dispatch(test())
-        }
     }
 }
 

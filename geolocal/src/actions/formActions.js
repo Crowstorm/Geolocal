@@ -11,6 +11,7 @@ export const GET_FORM_ADDRESS = `GET_FORM_ADDRESS_${namespace}`;
 export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE_${namespace}`;
 export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
 export const GET_TEST = `GET_TEST_${namespace}`;
+export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
 
 //functions
 
@@ -34,7 +35,7 @@ export function testUpdate(ulica, lat, lon) {
             }
         })
 
-       // let _ulica = ulica;
+        // let _ulica = ulica;
 
         // Api.post('/api/ulica/all', _ulica).then((res) =>{
         //     console.log('res', res);
@@ -42,10 +43,16 @@ export function testUpdate(ulica, lat, lon) {
     }
 }
 
-export function test(){
-    return function(dispatch){
-        Api.get ('/api/ulica/all').then((res)=>{
+export function test() {
+    return function (dispatch) {
+        Api.get('/api/ulica/all').then((res) => {
             console.log('resp', res);
+            dispatch({
+                type: FILL_ARRAYS,
+                arrSucc: res.data.arrSucc,
+                arrFail: res.data.arrFail,
+                arrCheck: res.data.arrCheck
+            })
         })
     }
 }

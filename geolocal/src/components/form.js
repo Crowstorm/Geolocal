@@ -2,6 +2,7 @@ import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import ButtonsContainer from '../containers/buttonsContainer';
+import MassButtonContainer from '../containers/massButtonContainer';
 
 class Form extends React.Component {
     constructor(props) {
@@ -39,11 +40,11 @@ class Form extends React.Component {
         alert('lat' + this.props.lat + 'lon' + this.props.lon)
     }
 
-    handleThirdFormSubmit = (e) =>{
-        e.preventDefault();
-        console.log('elo');
-        this.props.test();
-    }
+    // handleThirdFormSubmit = (e) =>{
+    //     e.preventDefault();
+    //     console.log('elo');
+    //     this.props.test();
+    // }
 
 
     getForm = () => {
@@ -54,7 +55,8 @@ class Form extends React.Component {
                         <div className="col-sm-12">
                             <div className="form-group">
                                 <label>Adres</label>
-                                <input type="text" className="form-control" required ref="address" defaultValue='Piotrkowska 1, Łódź' />
+                                <input type="text" className="form-control" required ref="address"  value={this.props.arrFail[0]} />
+                                {/* defaultValue='Piotrkowska 1, Łódź'  */}
                             </div>
                         </div>
                     </div>
@@ -67,16 +69,11 @@ class Form extends React.Component {
 
                 </form>
 
-                <form onSubmit={this.handleThirdFormSubmit}>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <button type="submit" className="btn btn-primary center">Test</button><br /><br />
-                        </div>
-                    </div>
-                </form>
+                {/* Masowe pobranie z bazy */}
+
+                <MassButtonContainer />
 
                 <form onSubmit={this.handleSecondFormSubmit}>
-                    {/* <ButtonsContainer /> */}
                     <div className="row">
                         <div className="col-lg-12">
                             <p>Przed potwierdzeniem sprawdź poprawność danych</p>

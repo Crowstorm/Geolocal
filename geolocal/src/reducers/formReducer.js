@@ -4,7 +4,8 @@ import {
     GET_FORM_ADDRESS,
     GET_DATA_FROM_GEOCODE,
     UPDATE_LAT_LON,
-    GET_TEST
+    GET_TEST,
+    FILL_ARRAYS
 } from '../actions/formActions'
 
 let initial_state = {
@@ -22,13 +23,24 @@ let initial_state = {
     addressError: false,
     testUlica: null,
     testLat: null,
-    testLon: null
+    testLon: null,
+    arrSucc: [],
+    arrFail: [],
+    arrCheck: [],
+    arrFailIndex: 0
 };
 
 export default (state = initial_state, action) => {
 
     switch (action.type) {
-        case GET_TEST:{
+        case FILL_ARRAYS: {
+            return Object.assign({}, state, {
+                arrSucc: action.arrSucc,
+                arrFail: action.arrFail,
+                arrCheck: action.arrCheck
+            })
+        }
+        case GET_TEST: {
             return Object.assign({}, state, {
                 testUlica: action.testUlica,
                 testLat: action.testLat,
@@ -49,7 +61,7 @@ export default (state = initial_state, action) => {
         }
 
         case GET_DATA_FROM_GEOCODE: {
-            try{
+            try {
                 return Object.assign({}, state, {
                     street: action.payload.data.results[0].address_components[1].long_name,
                     streetNr: action.payload.data.results[0].address_components[0].long_name,
@@ -61,7 +73,7 @@ export default (state = initial_state, action) => {
                     lon: action.payload.data.results[0].geometry.location.lng,
                     addressError: false
                 })
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
                 return Object.assign({}, state, {
                     street: null,
