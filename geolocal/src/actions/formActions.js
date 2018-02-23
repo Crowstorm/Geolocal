@@ -15,9 +15,9 @@ export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
 
 //functions
 
-export function testUpdate(ulica, lat, lon) {
+export function testUpdate(ulica, miasto, lat, lon) {
     return function (dispatch) {
-        let params = { ulica, lat, lon };
+        let params = { ulica, miasto, lat, lon };
         //console.log(params);
 
         Api.post('/api/ulica/coordy', params).then((res) => {
@@ -34,12 +34,6 @@ export function testUpdate(ulica, lat, lon) {
                 console.log('respons', res)
             }
         })
-
-        // let _ulica = ulica;
-
-        // Api.post('/api/ulica/all', _ulica).then((res) =>{
-        //     console.log('res', res);
-        // })
     }
 }
 
@@ -87,20 +81,20 @@ export function getDatafromGeocode(address) {
     //Split full address into parts
     let result;
     result = address.split(',');
-    console.log('result', result);
+    //console.log('result', result);
 
     let street = result[0].replace(/\s/g, '');;
     let city = result[1].replace(/\s/g, '');;
     const country = 'PL';
 
-    console.log('test', street, city, country)
+    //console.log('test', street, city, country)
 
     //api call url, podmienic klucz api, bo ten moj joł
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${street},${city}&key=AIzaSyBHek4tQK4jSQhVSoxw4s4c8tz_1z3xuNI`;
-    console.log(url);
+    //console.log(url);
 
     const request = axios.get(url);
-    console.log(request);
+    //console.log(request);
 
     return function (dispatch) {
         dispatch({

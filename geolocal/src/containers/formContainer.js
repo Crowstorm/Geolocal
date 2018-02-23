@@ -29,7 +29,8 @@ const mapStateToProps = (store) =>{
         lon: store.form.lon,
         arrSucc: store.form.arrSucc,
         arrFail: store.form.arrFail,
-        arrCheck: store.form.arrCheck
+        arrCheck: store.form.arrCheck,
+        arrIndex: store.form.arrIndex
     }
 }
 
@@ -44,8 +45,8 @@ const mapDispatchToProps = (dispatch) =>{
         getDataFromGeocode: (address) => {
             dispatch(getDatafromGeocode(address))
         },
-        testUpdate: (ulica, lat, lon) =>{
-            dispatch(testUpdate(ulica, lat, lon))
+        testUpdate: (ulica,miasto, lat, lon) =>{
+            dispatch(testUpdate(ulica,miasto, lat, lon))
         },
     }
 }

@@ -26,18 +26,29 @@ class Form extends React.Component {
     handleFirstFormSubmit = (e) => {
         e.preventDefault()
         let address = this.refs.address.value;
-        //console.log(address)
+        console.log('adres', address)
         //this.props.getFormAddress(address);
         this.props.getDataFromGeocode(address);
-        let ulica = "Piotrkowska 1";
-        let lon = 15.2222;
-        let lat = 123.23
-        this.props.testUpdate(ulica, lat, lon);
+        // let ulica = "Piotrkowska 1";
+        // let lon = this.props;
+        // let lat = 123.23
+        // this.props.testUpdate(ulica, lat, lon);
     }
 
     handleSecondFormSubmit = (e) => {
-        e.preventDefault()
-        alert('lat' + this.props.lat + 'lon' + this.props.lon)
+        e.preventDefault();
+        //Split full address into parts
+        let result;
+        let arrIndex = this.props.arrIndex;
+        result = this.props.arrFail[arrIndex].split(',');
+        //console.log('result', result);
+
+        let street = result[0]//.replace(/\s/g, '');
+        let city = result[1].replace(/\s/g, '');
+        let lat = this.props.lat;
+        let lon = this.props.lon;
+        this.props.testUpdate(street, city, lat, lon)
+        console.log('lat' , this.props.lat , 'lon' , this.props.lon, 'street', street, 'city', city)
     }
 
     // handleThirdFormSubmit = (e) =>{
@@ -48,6 +59,8 @@ class Form extends React.Component {
 
 
     getForm = () => {
+        let arrIndex = this.props.arrIndex;
+        console.log('arrindex', arrIndex)
         return (
             <div>
                 <form onSubmit={this.handleFirstFormSubmit}>
@@ -55,7 +68,7 @@ class Form extends React.Component {
                         <div className="col-sm-12">
                             <div className="form-group">
                                 <label>Adres</label>
-                                <input type="text" className="form-control" required ref="address"  value={this.props.arrFail[0]} />
+                                <input type="text" className="form-control" required ref="address" value={this.props.arrFail[arrIndex]} />
                                 {/* defaultValue='Piotrkowska 1, Łódź'  */}
                             </div>
                         </div>

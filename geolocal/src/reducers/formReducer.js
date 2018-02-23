@@ -27,7 +27,7 @@ let initial_state = {
     arrSucc: [],
     arrFail: [],
     arrCheck: [],
-    arrFailIndex: 0
+    arrIndex: 0
 };
 
 export default (state = initial_state, action) => {
@@ -44,7 +44,8 @@ export default (state = initial_state, action) => {
             return Object.assign({}, state, {
                 testUlica: action.testUlica,
                 testLat: action.testLat,
-                testLon: action.testLon
+                testLon: action.testLon,
+                arrIndex: state.arrIndex +1
             })
         }
         case UPDATE_LAT_LON: {
@@ -74,7 +75,7 @@ export default (state = initial_state, action) => {
                     addressError: false
                 })
             } catch (err) {
-                console.log(err);
+                //console.log(err);
                 return Object.assign({}, state, {
                     street: null,
                     streetNr: null,
