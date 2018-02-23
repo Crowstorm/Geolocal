@@ -41,10 +41,9 @@ class Form extends React.Component {
         let result;
         let arrIndex = this.props.arrIndex;
         result = this.props.arrFail[arrIndex].split(',');
-        //console.log('result', result);
 
         let street = result[0]//.replace(/\s/g, '');
-        let city = result[1].replace(/\s/g, '');
+        let city = result[1]//.replace(/\s/g, '');
         let lat = this.props.lat;
         let lon = this.props.lon;
         this.props.testUpdate(street, city, lat, lon)
