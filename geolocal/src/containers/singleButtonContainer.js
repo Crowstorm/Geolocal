@@ -29,7 +29,9 @@ const mapStateToProps = (store) => {
         lon: store.form.lon,
         arrSucc: store.form.arrSucc,
         arrFail: store.form.arrFail,
-        arrCheck: store.form.arrCheck
+        arrCheck: store.form.arrCheck,
+        errorAPI: store.form.errorAPI,
+        name: store.form.name
     }
 }
 

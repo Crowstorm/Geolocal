@@ -12,6 +12,7 @@ export const GET_DATA_FROM_GEOCODE = `GET_DATA_FROM_GEOCODE_${namespace}`;
 export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
 export const GET_TEST = `GET_TEST_${namespace}`;
 export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
+export const GET_SINGLE_RECORD = `GET_SINGLE_RECORD_${namespace}`;
 
 //functions
 
@@ -20,6 +21,14 @@ export function getSingleRecord() {
         Api.get('/api/geoloc/single').then((res)=>{
             if(res.success){
                 console.log(res);
+                if(res.data.error == "No address found"){
+                    dispatch({
+                        type: GET_SINGLE_RECORD,
+                        errorAPI: res.data.error,
+                        name: res.data.name
+                    })
+                }
+                
             }
         })
     }

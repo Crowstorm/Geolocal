@@ -11,7 +11,17 @@ class SingleButton extends React.Component {
         this.props.getSingleRecord();
     }
 
+    getResults = () =>{
+        return(
+            <div>
+                <div>{this.props.errorAPI}</div>
+                <div>{this.props.name}</div>
+            </div>
+        )
+    }
+
     render() {
+        let results = this.getResults();
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -21,6 +31,7 @@ class SingleButton extends React.Component {
                         </div>
                     </div>
                 </form>
+                {results}
             </div>
         )
     }

@@ -5,7 +5,8 @@ import {
     GET_DATA_FROM_GEOCODE,
     UPDATE_LAT_LON,
     GET_TEST,
-    FILL_ARRAYS
+    FILL_ARRAYS,
+    GET_SINGLE_RECORD
 } from '../actions/formActions'
 
 let initial_state = {
@@ -27,12 +28,20 @@ let initial_state = {
     arrSucc: [],
     arrFail: [],
     arrCheck: [],
-    arrIndex: 0
+    arrIndex: 0,
+    errorAPI: null,
+    name: null
 };
 
 export default (state = initial_state, action) => {
 
     switch (action.type) {
+        case GET_SINGLE_RECORD: {
+            return Object.assign({}, state, {
+                errorAPI: action.errorAPI,
+                name: action.name
+            })
+        }
         case FILL_ARRAYS: {
             return Object.assign({}, state, {
                 arrSucc: action.arrSucc,
