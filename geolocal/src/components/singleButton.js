@@ -11,13 +11,18 @@ class SingleButton extends React.Component {
         this.props.getSingleRecord();
     }
 
+    handleRemoveRecord = (id) =>{
+        this.props.deleteOneRecord(id)
+    }
+
     getResults = () =>{
-        let button = (this.props.errorAPI) ? <button type="submit" className="btn btn-primary center" >Usuń rekord z bazy</button> : '';
+        let button = (this.props.errorAPI) ? <button type="submit" onClick={() => this.handleRemoveRecord(this.props.clientId)} className="btn btn-primary center" >Usuń rekord z bazy</button> : '';
         return(
             <div>
                 <div>{this.props.errorAPI}</div>
                 <div>{this.props.name}</div>
                 <div>{this.props.phoneNumber}</div>
+                <div>{this.props.msg}</div>
                 {button}
             </div>
         )
@@ -30,7 +35,7 @@ class SingleButton extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-lg-12">
-                            <button type="submit" className="btn btn-primary center" >Pojedyńczo</button><br /><br />
+                            <button  type="submit" className="btn btn-primary center" >Pojedyńczo</button><br /><br />
                         </div>
                     </div>
                 </form>

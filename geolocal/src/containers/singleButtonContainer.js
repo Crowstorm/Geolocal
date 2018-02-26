@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import SingleButton from '../components/singleButton';
 
-import { getSingleRecord } from '../actions/formActions';
+import { getSingleRecord, deleteOneRecord } from '../actions/formActions';
 
 
 class SingleButtonContainer extends React.Component{
@@ -32,7 +32,9 @@ const mapStateToProps = (store) => {
         arrCheck: store.form.arrCheck,
         errorAPI: store.form.errorAPI,
         name: store.form.name,
-        phoneNumber: store.form.phoneNumber
+        phoneNumber: store.form.phoneNumber,
+        clientId: store.form.clientId,
+        msg: store.form.msg
     }
 }
 
@@ -40,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getSingleRecord: () => {
             dispatch(getSingleRecord())
+        },
+        deleteOneRecord: (id) =>{
+            dispatch(deleteOneRecord(id))
         }
     }
 }

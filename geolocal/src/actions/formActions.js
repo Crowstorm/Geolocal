@@ -13,8 +13,28 @@ export const UPDATE_LAT_LON = `UPDATE_LAT_LON_${namespace}`;
 export const GET_TEST = `GET_TEST_${namespace}`;
 export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
 export const GET_SINGLE_RECORD = `GET_SINGLE_RECORD_${namespace}`;
+export const SEND_MESSAGE = `SEND_MESSAGE_${namespace}`;
 
 //functions
+
+export function deleteOneRecord(id){
+    return function(dispatch){
+        console.log(id);
+        let params = {id}
+        console.log(params)
+        Api.delete('/api/database/delete', params).then((res, err)=>{
+            if (err) console.log(err);
+
+            if(res.success){
+                dispatch({
+                    type: SEND_MESSAGE,
+                    msg: res.msg
+                })
+                console.log(res.msg);
+            }
+        })
+    }
+}
 
 export function getSingleRecord() {
     return function(dispatch){
@@ -26,13 +46,16 @@ export function getSingleRecord() {
                         type: GET_SINGLE_RECORD,
                         errorAPI: res.data.error,
                         name: res.data.name,
-                        phoneNumber: res.data.phoneNumber
+                        phoneNumber: res.data.phoneNumber,
+                        clientId: res.data.clientId
                     })
                 } else if (res.data.error == "Could not get coordinates"){
                     const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
                     console.log('adres', address)
                 } else {
-                    console.log('adres ustawiony poprawnie')
+                    const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
+
+                    console.log('adres ustawiony poprawnie', address)
                 }
                 
                 

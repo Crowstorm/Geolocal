@@ -6,7 +6,8 @@ import {
     UPDATE_LAT_LON,
     GET_TEST,
     FILL_ARRAYS,
-    GET_SINGLE_RECORD
+    GET_SINGLE_RECORD,
+    SEND_MESSAGE
 } from '../actions/formActions'
 
 let initial_state = {
@@ -31,18 +32,26 @@ let initial_state = {
     arrIndex: 0,
     errorAPI: null,
     name: null,
-    phoneNumber: null
+    phoneNumber: null,
+    clientId: null,
+    msg: null
 };
 
 export default (state = initial_state, action) => {
 
     switch (action.type) {
+        case SEND_MESSAGE:{
+            return Object.assign({}, state, {
+                msg: action.msg
+            })
+        }
         case GET_SINGLE_RECORD: {
             return Object.assign({}, state, {
                 errorAPI: action.errorAPI,
                 name: action.name,
                 addressInput: action.addressInput,
-                phoneNumber: action.phoneNumber
+                phoneNumber: action.phoneNumber,
+                clientId: action.clientId
             })
         }
         case FILL_ARRAYS: {
