@@ -3,6 +3,7 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 
 import ButtonsContainer from '../containers/buttonsContainer';
 import MassButtonContainer from '../containers/massButtonContainer';
+import SingleButtonContainer from '../containers/singleButtonContainer';
 
 class Form extends React.Component {
     constructor(props) {
@@ -62,6 +63,11 @@ class Form extends React.Component {
         console.log('arrindex', arrIndex)
         return (
             <div>
+                {/* Masowe pobranie z bazy */}
+
+                <SingleButtonContainer />
+                <MassButtonContainer />
+
                 <form onSubmit={this.handleFirstFormSubmit}>
                     <div className="row">
                         <div className="col-sm-12">
@@ -81,9 +87,7 @@ class Form extends React.Component {
 
                 </form>
 
-                {/* Masowe pobranie z bazy */}
 
-                <MassButtonContainer />
 
                 <form onSubmit={this.handleSecondFormSubmit}>
                     <div className="row">

@@ -22,13 +22,13 @@ class MassButton extends React.Component {
         )
     }
     render() {
-        let renderResults = this.getResults();
+        let renderResults = (this.props.arrSucc.length == 0) ? ':(' : this.getResults() ;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-lg-12">
-                            <button type="submit" className="btn btn-primary center">Masowe</button><br /><br />
+                            <button type="submit" className="btn btn-primary center" disabled>Masowe</button><br /><br />
                         </div>
                     </div>
                 </form>

@@ -15,6 +15,18 @@ export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
 
 //functions
 
+export function getSingleRecord() {
+    return function(dispatch){
+        Api.get('/api/geoloc/single').then((res)=>{
+            if(res.success){
+                console.log(res);
+            }
+        })
+    }
+}
+
+//baza.findOneAndUpdate({ "addresses._id": response.id }, {$set: {addresses: {coordinates: {lat: response.lat, lon:response.lon, coordsSet: true} } }}, { new : true }).then((update) =>{
+
 export function testUpdate(ulica, miasto, lat, lon) {
     return function (dispatch) {
         let params = { ulica, miasto, lat, lon };
