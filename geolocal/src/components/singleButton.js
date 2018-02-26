@@ -12,10 +12,13 @@ class SingleButton extends React.Component {
     }
 
     getResults = () =>{
+        let button = (this.props.errorAPI) ? <button type="submit" className="btn btn-primary center" >Usuń rekord z bazy</button> : '';
         return(
             <div>
                 <div>{this.props.errorAPI}</div>
                 <div>{this.props.name}</div>
+                <div>{this.props.phoneNumber}</div>
+                {button}
             </div>
         )
     }

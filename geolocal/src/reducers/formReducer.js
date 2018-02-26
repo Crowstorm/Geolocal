@@ -30,7 +30,8 @@ let initial_state = {
     arrCheck: [],
     arrIndex: 0,
     errorAPI: null,
-    name: null
+    name: null,
+    phoneNumber: null
 };
 
 export default (state = initial_state, action) => {
@@ -39,7 +40,9 @@ export default (state = initial_state, action) => {
         case GET_SINGLE_RECORD: {
             return Object.assign({}, state, {
                 errorAPI: action.errorAPI,
-                name: action.name
+                name: action.name,
+                addressInput: action.addressInput,
+                phoneNumber: action.phoneNumber
             })
         }
         case FILL_ARRAYS: {

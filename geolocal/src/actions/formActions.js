@@ -25,9 +25,16 @@ export function getSingleRecord() {
                     dispatch({
                         type: GET_SINGLE_RECORD,
                         errorAPI: res.data.error,
-                        name: res.data.name
+                        name: res.data.name,
+                        phoneNumber: res.data.phoneNumber
                     })
+                } else if (res.data.error == "Could not get coordinates"){
+                    const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
+                    console.log('adres', address)
+                } else {
+                    console.log('adres ustawiony poprawnie')
                 }
+                
                 
             }
         })
