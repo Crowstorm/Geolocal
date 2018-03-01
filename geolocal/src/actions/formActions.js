@@ -61,9 +61,20 @@ export function getSingleRecord() {
                         clientId: res.data.clientId
                     })
                 } else {
-                    const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
+                    console.log('res', res)
+                    dispatch({
+                        type: GET_SINGLE_RECORD,
+                        name: res.data.clientName,
+                        checkAddress: res.data.addressNoEncode,
+                        clientId: res.data.clientId
+                    });
+                    dispatch({
+                        type: SEND_MESSAGE,
+                        msg: 'Adres ustawiony poprawnie, możesz przejść dalej'
+                    })
+                    //const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
 
-                    console.log('adres ustawiony poprawnie', address)
+                    console.log('adres ustawiony poprawnie', res.data.clientName, ', ', res.data.addressNoEncode)
                 }
 
 
@@ -129,8 +140,8 @@ export function test() {
 }
 
 export function updateLatLon(lat, lon) {
-    let _lat = lat;
-    let _lon = lon;
+    let _lat = Number(lat);
+    let _lon = Number(lon);
 
     return function (dispatch) {
         dispatch({
@@ -159,15 +170,17 @@ export function getDatafromGeocode(address) {
     let result;
     result = address.split(',');
     let addressApi;
+    let country = 'PL';
     console.log('result', result);
     if (result.length == 2) {
         console.log('mam dwa"');
+        let street = result[0].replace(/\s/g, '');
+        let city = result[1].replace(/\s/g, '');
+        addressApi = encodeURI(street.concat(', ').concat(city)); //Dla API
     } else if (result.length == 3) {
-        console.log('mam czy"');
         let street = result[0].replace(/\s/g, '');
         let streetNumber = result[1].replace(/\s/g, '');
         let city = result[2].replace(/\s/g, '');
-        let country = 'PL';
         addressApi = encodeURI(street.concat(', ').concat(streetNumber).concat(',').concat(city)); //Dla API
     }
 

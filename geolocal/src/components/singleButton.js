@@ -20,9 +20,9 @@ class SingleButton extends React.Component {
         return(
             <div>
                 <div>{this.props.errorAPI}</div>
+                <div>{this.props.msg}</div>
                 <div>{this.props.name}</div>
                 <div>{this.props.phoneNumber}</div>
-                <div>{this.props.msg}</div>
                 <div>{this.props.checkAddress}</div>
                 {button}
             </div>

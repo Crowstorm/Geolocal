@@ -30,17 +30,11 @@ class Form extends React.Component {
         console.log('adres', address)
         //this.props.getFormAddress(address);
         this.props.getDataFromGeocode(address);
-        // let ulica = "Piotrkowska 1";
-        // let lon = this.props;
-        // let lat = 123.23
-        // this.props.testUpdate(ulica, lat, lon);
     }
 
     handleSecondFormSubmit = (e) => {
         e.preventDefault();
         //Split full address into parts
-        // let result;
-        // let arrIndex = this.props.arrIndex;
         // result = this.props.arrFail[arrIndex].split(',');
 
         // let street = result[0]//.replace(/\s/g, '');
@@ -48,18 +42,9 @@ class Form extends React.Component {
         let lat = this.props.lat;
         let lon = this.props.lon;
         let id = this.props.clientId;
-        // this.props.testUpdate(street, city, lat, lon)
-        // console.log('lat' , this.props.lat , 'lon' , this.props.lon, 'street', street, 'city', city)
 
         this.props.updateDBcoords(id, lat, lon)
     }
-
-    // handleThirdFormSubmit = (e) =>{
-    //     e.preventDefault();
-    //     console.log('elo');
-    //     this.props.test();
-    // }
-
 
     getForm = () => {
         let arrIndex = this.props.arrIndex;
