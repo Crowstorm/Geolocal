@@ -7,7 +7,8 @@ import {
     GET_TEST,
     FILL_ARRAYS,
     GET_SINGLE_RECORD,
-    SEND_MESSAGE
+    SEND_MESSAGE,
+    UPDATE_DB_COORDS
 } from '../actions/formActions'
 
 let initial_state = {
@@ -24,8 +25,8 @@ let initial_state = {
     lon: null,
     addressError: false,
     testUlica: null,
-    testLat: null,
-    testLon: null,
+    dbLat: null,
+    dbLon: null,
     arrSucc: [],
     arrFail: [],
     arrCheck: [],
@@ -34,12 +35,19 @@ let initial_state = {
     name: null,
     phoneNumber: null,
     clientId: null,
+    checkAddress: null,
     msg: null
 };
 
 export default (state = initial_state, action) => {
 
     switch (action.type) {
+        case UPDATE_DB_COORDS:{
+            return Object.assign({}, state, {
+                dbLat: action.dbLat,
+                dbLon: action.dbLon
+            })
+        }
         case SEND_MESSAGE:{
             return Object.assign({}, state, {
                 msg: action.msg
@@ -51,7 +59,8 @@ export default (state = initial_state, action) => {
                 name: action.name,
                 addressInput: action.addressInput,
                 phoneNumber: action.phoneNumber,
-                clientId: action.clientId
+                clientId: action.clientId,
+                checkAddress: action.checkAddress
             })
         }
         case FILL_ARRAYS: {

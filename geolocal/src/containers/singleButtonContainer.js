@@ -34,6 +34,7 @@ const mapStateToProps = (store) => {
         name: store.form.name,
         phoneNumber: store.form.phoneNumber,
         clientId: store.form.clientId,
+        checkAddress: store.form.checkAddress,
         msg: store.form.msg
     }
 }

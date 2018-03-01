@@ -14,18 +14,19 @@ export const GET_TEST = `GET_TEST_${namespace}`;
 export const FILL_ARRAYS = `FILL_ARRAYS_${namespace}`;
 export const GET_SINGLE_RECORD = `GET_SINGLE_RECORD_${namespace}`;
 export const SEND_MESSAGE = `SEND_MESSAGE_${namespace}`;
+export const UPDATE_DB_COORDS = `UPDATE_DB_COORDS_${namespace}`;
 
 //functions
 
-export function deleteOneRecord(id){
-    return function(dispatch){
+export function deleteOneRecord(id) {
+    return function (dispatch) {
         console.log(id);
-        let params = {id}
+        let params = { id }
         console.log(params)
-        Api.delete('/api/database/delete', params).then((res, err)=>{
+        Api.delete('/api/database/delete', params).then((res, err) => {
             if (err) console.log(err);
 
-            if(res.success){
+            if (res.success) {
                 dispatch({
                     type: SEND_MESSAGE,
                     msg: res.msg
@@ -37,11 +38,11 @@ export function deleteOneRecord(id){
 }
 
 export function getSingleRecord() {
-    return function(dispatch){
-        Api.get('/api/geoloc/single').then((res)=>{
-            if(res.success){
+    return function (dispatch) {
+        Api.get('/api/geoloc/single').then((res) => {
+            if (res.success) {
                 console.log(res);
-                if(res.data.error == "No address found"){
+                if (res.data.error == "No address found") {
                     dispatch({
                         type: GET_SINGLE_RECORD,
                         errorAPI: res.data.error,
@@ -49,23 +50,48 @@ export function getSingleRecord() {
                         phoneNumber: res.data.phoneNumber,
                         clientId: res.data.clientId
                     })
-                } else if (res.data.error == "Could not get coordinates"){
-                    const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
-                    console.log('adres', address)
+                } else if (res.data.error == "Could not get coordinates") {
+                    // const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
+                    //console.log('adres', address)
+                    dispatch({
+                        type: GET_SINGLE_RECORD,
+                        errorAPI: res.data.error,
+                        name: res.data.clientName,
+                        checkAddress: res.data.addressNoEncode,
+                        clientId: res.data.clientId
+                    })
                 } else {
                     const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
 
                     console.log('adres ustawiony poprawnie', address)
                 }
-                
-                
+
+
             }
         })
     }
 }
 
-//baza.findOneAndUpdate({ "addresses._id": response.id }, {$set: {addresses: {coordinates: {lat: response.lat, lon:response.lon, coordsSet: true} } }}, { new : true }).then((update) =>{
+//Update coordinates in database
+export function updateDBcoords(id, lat, lon) {
+    return function (dispatch) {
+        let params = { id, lat, lon };
+        console.log('id', params.id)
 
+        Api.post('/api/ulica/coordy', params).then((res) => {
+            if (res.success) {
+                dispatch({
+                    type: UPDATE_DB_COORDS,
+                    dbLat: lat,
+                    dbLon: lon,
+                })
+            } else {
+                alert('Something went wrong, check console for errors');
+                console.log('Response: ', res);
+            }
+        })
+    }
+}
 export function testUpdate(ulica, miasto, lat, lon) {
     return function (dispatch) {
         let params = { ulica, miasto, lat, lon };
@@ -132,17 +158,30 @@ export function getDatafromGeocode(address) {
     //Split full address into parts
     let result;
     result = address.split(',');
-    //console.log('result', result);
-
-    let street = result[0].replace(/\s/g, '');;
-    let city = result[1].replace(/\s/g, '');;
-    const country = 'PL';
+    let addressApi;
+    console.log('result', result);
+    if (result.length == 2) {
+        console.log('mam dwa"');
+    } else if (result.length == 3) {
+        console.log('mam czy"');
+        let street = result[0].replace(/\s/g, '');
+        let streetNumber = result[1].replace(/\s/g, '');
+        let city = result[2].replace(/\s/g, '');
+        let country = 'PL';
+        addressApi = encodeURI(street.concat(', ').concat(streetNumber).concat(',').concat(city)); //Dla API
+    }
 
     //console.log('test', street, city, country)
 
     //api call url, podmienic klucz api, bo ten moj joł
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${street},${city}&key=AIzaSyBHek4tQK4jSQhVSoxw4s4c8tz_1z3xuNI`;
-    //console.log(url);
+    //1 klucz
+    //AIzaSyBHek4tQK4jSQhVSoxw4s4c8tz_1z3xuNI
+    //2 klucz api
+    //AIzaSyD4N5V3BF_gXXHy5ZC_EuQGYTgUkc3Feb0
+    //3 klucz
+    // AIzaSyAMqoqcQ5d0U9jDKDgNaj1K3vsV3MoSAds
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressApi}&key=AIzaSyBHek4tQK4jSQhVSoxw4s4c8tz_1z3xuNI`;
+    console.log(url);
 
     const request = axios.get(url);
     //console.log(request);

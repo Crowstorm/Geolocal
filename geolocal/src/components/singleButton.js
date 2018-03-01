@@ -23,6 +23,7 @@ class SingleButton extends React.Component {
                 <div>{this.props.name}</div>
                 <div>{this.props.phoneNumber}</div>
                 <div>{this.props.msg}</div>
+                <div>{this.props.checkAddress}</div>
                 {button}
             </div>
         )

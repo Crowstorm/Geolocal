@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 
 import Form from '../components/form';
-import {getFormAddress, getDatafromGeocode, updateLatLon, testUpdate, test} from '../actions/formActions';
+import {getFormAddress, getDatafromGeocode, updateLatLon, testUpdate, test, updateDBcoords} from '../actions/formActions';
 
 
 class FormContainer extends React.Component{
@@ -30,7 +30,8 @@ const mapStateToProps = (store) =>{
         arrSucc: store.form.arrSucc,
         arrFail: store.form.arrFail,
         arrCheck: store.form.arrCheck,
-        arrIndex: store.form.arrIndex
+        arrIndex: store.form.arrIndex,
+        clientId: store.form.clientId
     }
 }
 
@@ -48,6 +49,9 @@ const mapDispatchToProps = (dispatch) =>{
         testUpdate: (ulica,miasto, lat, lon) =>{
             dispatch(testUpdate(ulica,miasto, lat, lon))
         },
+        updateDBcoords: (id, lat, lon) =>{
+            dispatch(updateDBcoords(id, lat, lon));
+        }
     }
 }
 

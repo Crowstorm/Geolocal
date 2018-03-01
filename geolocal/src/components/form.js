@@ -39,16 +39,19 @@ class Form extends React.Component {
     handleSecondFormSubmit = (e) => {
         e.preventDefault();
         //Split full address into parts
-        let result;
-        let arrIndex = this.props.arrIndex;
-        result = this.props.arrFail[arrIndex].split(',');
+        // let result;
+        // let arrIndex = this.props.arrIndex;
+        // result = this.props.arrFail[arrIndex].split(',');
 
-        let street = result[0]//.replace(/\s/g, '');
-        let city = result[1]//.replace(/\s/g, '');
+        // let street = result[0]//.replace(/\s/g, '');
+        // let city = result[1]//.replace(/\s/g, '');
         let lat = this.props.lat;
         let lon = this.props.lon;
-        this.props.testUpdate(street, city, lat, lon)
-        console.log('lat' , this.props.lat , 'lon' , this.props.lon, 'street', street, 'city', city)
+        let id = this.props.clientId;
+        // this.props.testUpdate(street, city, lat, lon)
+        // console.log('lat' , this.props.lat , 'lon' , this.props.lon, 'street', street, 'city', city)
+
+        this.props.updateDBcoords(id, lat, lon)
     }
 
     // handleThirdFormSubmit = (e) =>{
