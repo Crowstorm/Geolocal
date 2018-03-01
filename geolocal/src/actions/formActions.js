@@ -50,6 +50,10 @@ export function getSingleRecord() {
                         phoneNumber: res.data.phoneNumber,
                         clientId: res.data.clientId
                     })
+                    dispatch({
+                        type: SEND_MESSAGE,
+                        msg: ''
+                    })
                 } else if (res.data.error == "Could not get coordinates") {
                     // const address = res.data.addresses[0].route.concat(' ').concat(res.data.addresses[0].street_number).concat(', ').concat(res.data.addresses[0].locality);
                     //console.log('adres', address)
@@ -59,6 +63,10 @@ export function getSingleRecord() {
                         name: res.data.clientName,
                         checkAddress: res.data.addressNoEncode,
                         clientId: res.data.clientId
+                    })
+                    dispatch({
+                        type: SEND_MESSAGE,
+                        msg: ''
                     })
                 } else {
                     console.log('res', res)
