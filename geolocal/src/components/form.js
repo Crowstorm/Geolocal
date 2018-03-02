@@ -32,11 +32,6 @@ class Form extends React.Component {
 
     handleSecondFormSubmit = (e) => {
         e.preventDefault();
-        //Split full address into parts
-        // result = this.props.arrFail[arrIndex].split(',');
-
-        // let street = result[0]//.replace(/\s/g, '');
-        // let city = result[1]//.replace(/\s/g, '');
         let lat = this.props.lat;
         let lon = this.props.lon;
         let id = this.props.clientId;
@@ -60,8 +55,7 @@ class Form extends React.Component {
                         <div className="col-sm-12">
                             <div className="form-group">
                                 <label>Adres</label>
-                                <input type="text" className="form-control" required ref="address" value={this.props.arrFail[arrIndex]} />
-                                {/* defaultValue='Piotrkowska 1, Łódź'  */}
+                                <input type="text" className="form-control" required ref="address" defaultValue={this.props.checkAddress} />
                             </div>
                         </div>
                     </div>

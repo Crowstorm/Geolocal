@@ -20,9 +20,7 @@ export const UPDATE_DB_COORDS = `UPDATE_DB_COORDS_${namespace}`;
 
 export function deleteOneRecord(id) {
     return function (dispatch) {
-        console.log(id);
         let params = { id }
-        console.log(params)
         Api.delete('/api/database/delete', params).then((res, err) => {
             if (err) console.log(err);
 
@@ -111,27 +109,6 @@ export function updateDBcoords(id, lat, lon) {
         })
     }
 }
-// export function testUpdate(ulica, miasto, lat, lon) {
-//     return function (dispatch) {
-//         let params = { ulica, miasto, lat, lon };
-//         //console.log(params);
-
-//         Api.post('/api/ulica/coordy', params).then((res) => {
-//             if (res.success) {
-//                 //console.log('resp', res)
-//                 dispatch({
-//                     type: GET_TEST,
-//                     testUlica: ulica,
-//                     testLat: lat,
-//                     testLon: lon
-//                 })
-//             } else {
-//                 alert('Cos poszlo nie tak');
-//                 console.log('respons', res)
-//             }
-//         })
-//     }
-// }
 
 export function massGeoloc() {
     return function (dispatch) {
@@ -191,8 +168,6 @@ export function getDatafromGeocode(address) {
         let city = result[2].replace(/\s/g, '');
         addressApi = encodeURI(street.concat(', ').concat(streetNumber).concat(',').concat(city)); //Dla API
     }
-
-    //console.log('test', street, city, country)
 
     //api call url, podmienic klucz api, bo ten moj joł
     //1 klucz

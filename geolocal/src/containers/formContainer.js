@@ -31,7 +31,8 @@ const mapStateToProps = (store) =>{
         arrFail: store.form.arrFail,
         arrCheck: store.form.arrCheck,
         arrIndex: store.form.arrIndex,
-        clientId: store.form.clientId
+        clientId: store.form.clientId,
+        checkAddress: store.form.checkAddress,
     }
 }
 
