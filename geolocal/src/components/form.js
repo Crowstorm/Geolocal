@@ -43,7 +43,8 @@ class Form extends React.Component {
         let lon = this.props.lon;
         let id = this.props.clientId;
 
-        this.props.updateDBcoords(id, lat, lon)
+        this.props.updateDBcoords(id, lat, lon);
+        alert('Koordynaty zostały ustawione w bazie');
     }
 
     getForm = () => {

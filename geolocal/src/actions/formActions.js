@@ -135,7 +135,7 @@ export function testUpdate(ulica, miasto, lat, lon) {
 
 export function test() {
     return function (dispatch) {
-        Api.get('/api/ulica/all').then((res) => {
+        Api.get('/api/geoloc/all').then((res) => {
             console.log('resp', res);
             dispatch({
                 type: FILL_ARRAYS,
