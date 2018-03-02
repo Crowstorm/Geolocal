@@ -6,10 +6,9 @@ class MassButton extends React.Component {
         this.state = { };
     }
 
-    handleSubmit = (e) =>{
+    handleMassButtonSubmit = (e) =>{
         e.preventDefault();
-        console.log('elo');
-        this.props.test();
+        this.props.massGeoloc();
     }
 
     getResults = () =>{
@@ -25,7 +24,7 @@ class MassButton extends React.Component {
         let renderResults = (this.props.arrSucc.length == 0) ? '' : this.getResults() ;
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleMassButtonSubmit}>
                     <div className="row">
                         <div className="col-lg-12">
                             <button type="submit" className="btn btn-primary center">Masowe</button><br /><br />

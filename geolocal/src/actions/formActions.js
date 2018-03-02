@@ -111,29 +111,29 @@ export function updateDBcoords(id, lat, lon) {
         })
     }
 }
-export function testUpdate(ulica, miasto, lat, lon) {
-    return function (dispatch) {
-        let params = { ulica, miasto, lat, lon };
-        //console.log(params);
+// export function testUpdate(ulica, miasto, lat, lon) {
+//     return function (dispatch) {
+//         let params = { ulica, miasto, lat, lon };
+//         //console.log(params);
 
-        Api.post('/api/ulica/coordy', params).then((res) => {
-            if (res.success) {
-                //console.log('resp', res)
-                dispatch({
-                    type: GET_TEST,
-                    testUlica: ulica,
-                    testLat: lat,
-                    testLon: lon
-                })
-            } else {
-                alert('Cos poszlo nie tak');
-                console.log('respons', res)
-            }
-        })
-    }
-}
+//         Api.post('/api/ulica/coordy', params).then((res) => {
+//             if (res.success) {
+//                 //console.log('resp', res)
+//                 dispatch({
+//                     type: GET_TEST,
+//                     testUlica: ulica,
+//                     testLat: lat,
+//                     testLon: lon
+//                 })
+//             } else {
+//                 alert('Cos poszlo nie tak');
+//                 console.log('respons', res)
+//             }
+//         })
+//     }
+// }
 
-export function test() {
+export function massGeoloc() {
     return function (dispatch) {
         Api.get('/api/geoloc/all').then((res) => {
             console.log('resp', res);

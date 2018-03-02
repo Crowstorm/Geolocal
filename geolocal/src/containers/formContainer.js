@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 
 import Form from '../components/form';
-import {getFormAddress, getDatafromGeocode, updateLatLon, testUpdate, test, updateDBcoords} from '../actions/formActions';
+import {getFormAddress, getDatafromGeocode, updateLatLon, updateDBcoords} from '../actions/formActions';
 
 
 class FormContainer extends React.Component{
@@ -45,9 +45,6 @@ const mapDispatchToProps = (dispatch) =>{
         },
         getDataFromGeocode: (address) => {
             dispatch(getDatafromGeocode(address))
-        },
-        testUpdate: (ulica,miasto, lat, lon) =>{
-            dispatch(testUpdate(ulica,miasto, lat, lon))
         },
         updateDBcoords: (id, lat, lon) =>{
             dispatch(updateDBcoords(id, lat, lon));

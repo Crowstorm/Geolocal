@@ -1,7 +1,5 @@
 import React from 'react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-import ButtonsContainer from '../containers/buttonsContainer';
 import MassButtonContainer from '../containers/massButtonContainer';
 import SingleButtonContainer from '../containers/singleButtonContainer';
 

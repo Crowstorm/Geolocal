@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import MassButton from '../components/massButton';
-import { test } from '../actions/formActions';
+import { massGeoloc } from '../actions/formActions';
 
 class MassButtonContainer extends React.Component {
     render() {
@@ -33,8 +33,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        test: () => {
-            dispatch(test())
+        massGeoloc: () => {
+            dispatch(massGeoloc())
         }
     }
 }
