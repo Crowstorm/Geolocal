@@ -14,7 +14,7 @@ class MassButton extends React.Component {
     getResults = () =>{
         return(
             <div>
-                <p> Poprawnie ustawione adresów : {this.props.arrSucc.length} </p>
+                <p> Poprawnie ustawionych adresów : {this.props.arrSucc.length} </p>
                 <p> Adresy do skorygowania: {this.props.arrCheck.length} </p>
                 <p> Nie pobrano adresów : {this.props.arrFail.length} </p>
             </div>
