@@ -21,7 +21,7 @@ class MassButton extends React.Component {
         )
     }
     render() {
-        let renderResults = (this.props.arrSucc.length == 0) ? '' : this.getResults() ;
+        let renderResults = (this.props.arrFail.length == 0) ? '' : this.getResults() ;
         return (
             <div>
                 <form onSubmit={this.handleMassButtonSubmit}>

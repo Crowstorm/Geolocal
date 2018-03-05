@@ -10,6 +10,8 @@ class Form extends React.Component {
         // this.onChange = (address) => this.setState({ address })
     }
 
+    //redux form form version 
+
     showMsg = () => {
         if (this.state.msg === true) {
             return (
@@ -19,8 +21,6 @@ class Form extends React.Component {
             return null
         }
     }
-
-
 
     handleFirstFormSubmit = (e) => {
         e.preventDefault()
